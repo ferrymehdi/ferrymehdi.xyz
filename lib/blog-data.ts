@@ -12,9 +12,10 @@ export interface Blog {
 // Sample blog data - in a real app, this would come from a database
 const blogs: Blog[] = [
   {
-    id: 'getting-started-with-nextjs-14',
-    title: 'Getting Started with Next.js 14: A Complete Guide',
-    excerpt: 'Learn how to build modern web applications with Next.js 14, exploring the latest features including app router, server components, and streaming.',
+    id: "getting-started-with-nextjs-14",
+    title: "Getting Started with Next.js 14: A Complete Guide",
+    excerpt:
+      "Learn how to build modern web applications with Next.js 14, exploring the latest features including app router, server components, and streaming.",
     content: `# Getting Started with Next.js 14: A Complete Guide
 
 Next.js 14 represents a significant milestone in the evolution of React-based web development. This latest version introduces groundbreaking features that make building fast, scalable web applications easier than ever before.
@@ -78,15 +79,16 @@ npm run dev
 Next.js 14 sets a new standard for web development frameworks. With its focus on performance, developer experience, and modern React patterns, it's the perfect choice for your next project.
 
 Start building with Next.js 14 today and experience the future of web development!`,
-    date: 'December 15, 2024',
-    category: 'Next.js',
-    readTime: '8 min read',
-    featured: true
+    date: "December 15, 2024",
+    category: "Next.js",
+    readTime: "8 min read",
+    featured: true,
   },
   {
-    id: 'mastering-typescript-advanced-patterns',
-    title: 'Mastering TypeScript: Advanced Patterns for Better Code',
-    excerpt: 'Dive deep into advanced TypeScript patterns including conditional types, mapped types, and template literal types to write more robust applications.',
+    id: "mastering-typescript-advanced-patterns",
+    title: "Mastering TypeScript: Advanced Patterns for Better Code",
+    excerpt:
+      "Dive deep into advanced TypeScript patterns including conditional types, mapped types, and template literal types to write more robust applications.",
     content: `# Mastering TypeScript: Advanced Patterns for Better Code
 
 TypeScript has evolved far beyond a simple type checker. Modern TypeScript offers powerful type-level programming capabilities that can help you write more robust, maintainable code.
@@ -155,15 +157,16 @@ type UserUpdate = Partial<Pick<User, 'name' | 'email'>>;
 ## Conclusion
 
 Advanced TypeScript patterns enable you to catch more errors at compile time and create more expressive APIs. Master these patterns to take your TypeScript skills to the next level.`,
-    date: 'December 10, 2024',
-    category: 'TypeScript',
-    readTime: '12 min read',
-    featured: true
+    date: "December 10, 2024",
+    category: "TypeScript",
+    readTime: "12 min read",
+    featured: true,
   },
   {
-    id: 'building-scalable-react-applications',
-    title: 'Building Scalable React Applications: Architecture Patterns',
-    excerpt: 'Learn proven architectural patterns for building large-scale React applications that are maintainable, testable, and performant.',
+    id: "building-scalable-react-applications",
+    title: "Building Scalable React Applications: Architecture Patterns",
+    excerpt:
+      "Learn proven architectural patterns for building large-scale React applications that are maintainable, testable, and performant.",
     content: `# Building Scalable React Applications: Architecture Patterns
 
 As React applications grow in complexity, having a solid architectural foundation becomes crucial. This guide explores proven patterns for building scalable React applications.
@@ -292,15 +295,16 @@ src/
 ## Conclusion
 
 Building scalable React applications requires thoughtful architecture from the start. By following these patterns and best practices, you'll create applications that can grow with your needs while maintaining code quality and developer productivity.`,
-    date: 'December 5, 2024',
-    category: 'React',
-    readTime: '15 min read',
-    featured: true
+    date: "December 5, 2024",
+    category: "React",
+    readTime: "15 min read",
+    featured: true,
   },
   {
-    id: 'docker-development-workflow',
-    title: 'Streamlining Development with Docker: A Complete Workflow',
-    excerpt: 'Learn how to create efficient development workflows using Docker containers, from local development to production deployment.',
+    id: "docker-development-workflow",
+    title: "Streamlining Development with Docker: A Complete Workflow",
+    excerpt:
+      "Learn how to create efficient development workflows using Docker containers, from local development to production deployment.",
     content: `# Streamlining Development with Docker: A Complete Workflow
 
 Docker has revolutionized how we develop, test, and deploy applications. This guide shows you how to create an efficient development workflow using Docker containers.
@@ -470,15 +474,16 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \\
 Docker transforms development workflows by providing consistency, isolation, and portability. Start with simple containers and gradually adopt more advanced patterns as your needs grow.
 
 The investment in learning Docker pays dividends in reduced debugging time, easier onboarding, and reliable deployments.`,
-    date: 'November 28, 2024',
-    category: 'Docker',
-    readTime: '10 min read',
-    featured: false
+    date: "November 28, 2024",
+    category: "Docker",
+    readTime: "10 min read",
+    featured: false,
   },
   {
-    id: 'modern-css-techniques-2024',
-    title: 'Modern CSS Techniques Every Developer Should Know in 2024',
-    excerpt: 'Explore cutting-edge CSS features like container queries, cascade layers, and modern layout techniques that are changing web design.',
+    id: "modern-css-techniques-2024",
+    title: "Modern CSS Techniques Every Developer Should Know in 2024",
+    excerpt:
+      "Explore cutting-edge CSS features like container queries, cascade layers, and modern layout techniques that are changing web design.",
     content: `# Modern CSS Techniques Every Developer Should Know in 2024
 
 CSS continues to evolve rapidly, introducing powerful new features that make styling more intuitive and maintainable. Let's explore the latest techniques every developer should master.
@@ -567,7 +572,7 @@ Write more organized CSS with native nesting:
 }
 \`\`\`
 
-## Custom Properties with \`@property\`
+## Custom Properties with Property Registration
 
 Define custom properties with types and default values:
 
@@ -594,9 +599,9 @@ Use logical properties for better internationalization:
 
 \`\`\`css
 .element {
-  margin-inline: 1rem; /* left and right in LTR, right and left in RTL */
-  margin-block: 2rem;  /* top and bottom */
-  padding-inline-start: 1rem; /* left in LTR, right in RTL */
+  margin-inline: 1rem;
+  margin-block: 2rem;
+  padding-inline-start: 1rem;
 }
 \`\`\`
 
@@ -605,17 +610,14 @@ Use logical properties for better internationalization:
 Leverage new pseudo-selectors for better targeting:
 
 \`\`\`css
-/* Style elements that have specific children */
 .parent:has(.child) {
   background: lightblue;
 }
 
-/* Select every 3rd element starting from the 2nd */
 .item:nth-child(3n+2) {
   color: red;
 }
 
-/* Select elements within a range */
 .item:nth-child(n+3):nth-child(-n+7) {
   font-weight: bold;
 }
@@ -647,10 +649,6 @@ Use modern color functions for better color manipulation:
 Create smooth page transitions with the View Transitions API:
 
 \`\`\`css
-@view-transition {
-  navigation: auto;
-}
-
 ::view-transition-old(root) {
   animation: fade-out 0.3s ease-out;
 }
@@ -698,16 +696,14 @@ When using modern CSS features:
 1. **Check browser support** on caniuse.com
 2. **Use progressive enhancement**
 3. **Provide fallbacks** for critical features
-4. **Use feature queries** with \`@supports\`
+4. **Use feature queries** with supports
 
 \`\`\`css
-/* Fallback */
 .grid {
   display: flex;
   flex-wrap: wrap;
 }
 
-/* Enhanced with grid */
 @supports (display: grid) {
   .grid {
     display: grid;
@@ -721,25 +717,28 @@ When using modern CSS features:
 Modern CSS offers powerful tools for creating better user experiences with cleaner, more maintainable code. Start incorporating these techniques into your projects and stay ahead of the curve in web development.
 
 The key is to adopt these features gradually, ensuring backward compatibility while leveraging the power of modern CSS.`,
-    date: 'November 20, 2024',
-    category: 'Web Development',
-    readTime: '11 min read',
-    featured: false
-  }
+    date: "November 20, 2024",
+    category: "Web Development",
+    readTime: "11 min read",
+    featured: false,
+  },
 ];
 
 export function getAllBlogs(): Blog[] {
-  return blogs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return blogs.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+  );
 }
 
 export function getFeaturedBlogs(): Blog[] {
-  return blogs.filter(blog => blog.featured);
+  return blogs.filter((blog) => blog.featured);
 }
 
 export function getBlogById(id: string): Blog | undefined {
-  return blogs.find(blog => blog.id === id);
+  return blogs.find((blog) => blog.id === id);
 }
 
 export function getBlogsByCategory(category: string): Blog[] {
-  return blogs.filter(blog => blog.category === category);
+  return blogs.filter((blog) => blog.category === category);
 }
+

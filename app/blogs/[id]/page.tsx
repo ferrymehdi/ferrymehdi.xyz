@@ -1,22 +1,24 @@
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { ArrowLeft, Calendar, Clock } from 'lucide-react';
-import { getBlogById, getAllBlogs } from '@/lib/blog-data';
-import remarkGfm from 'remark-gfm';
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { ArrowLeft, Calendar, Clock } from "lucide-react";
+import { getBlogById, getAllBlogs } from "@/lib/blog-data";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 
 const mdxOptions = {
   mdxOptions: {
     remarkPlugins: [remarkGfm],
+    rehypePlugins: [rehypeHighlight],
   },
 };
 
 export async function generateStaticParams() {
   const blogs = getAllBlogs();
-  
+
   return blogs.map((blog) => ({
     id: blog.id,
   }));
@@ -45,11 +47,11 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
           <div className="flex items-center gap-2 mb-4">
             <Badge variant="secondary">{blog.category}</Badge>
           </div>
-          
+
           <h1 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
             {blog.title}
           </h1>
-          
+
           <div className="flex items-center gap-6 text-muted-foreground mb-6">
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4" />
@@ -60,11 +62,11 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
               <span>{blog.readTime}</span>
             </div>
           </div>
-          
+
           <p className="text-xl text-muted-foreground leading-relaxed">
             {blog.excerpt}
           </p>
-          
+
           <Separator className="mt-8" />
         </header>
 
@@ -82,7 +84,7 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
                 More Articles
               </Link>
             </Button>
-            
+
             <div className="text-sm text-muted-foreground">
               Published on {blog.date}
             </div>
@@ -92,3 +94,4 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
     </div>
   );
 }
+

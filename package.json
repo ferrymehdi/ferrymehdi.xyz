@@ -1,7 +1,14 @@
 {
   "name": "mehdiferry.xyz",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "description": "Personal website of Mehdi Ferry",
+  "license": "MIT",
+   "author": {
+    "name": "EL MEHDI ELFERRY",
+    "email": "me@ferrymehdi.xyz",
+    "url": "https://ferrymehdi.xyz"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

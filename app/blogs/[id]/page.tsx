@@ -12,7 +12,7 @@ import rehypeHighlight from "rehype-highlight";
 const mdxOptions = {
   mdxOptions: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeHighlight],
+    rehypePlugins: [rehypeHighlight as any],
   },
 };
 

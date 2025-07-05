@@ -1,32 +1,28 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
-import { getBlogById, getAllBlogs } from "@/lib/blog-data";
+import { getBlogById } from "@/lib/blog-data";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
-
+import { MDXRemote } from "next-mdx-remote/rsc";
+import "highlight.js/styles/github-dark.css";
 const mdxOptions = {
   mdxOptions: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeHighlight as any],
+    rehypePlugins: [rehypeHighlight],
   },
 };
 
-export async function generateStaticParams() {
-  const blogs = getAllBlogs();
-
-  return blogs.map((blog) => ({
-    id: blog.id,
-  }));
-}
-
-export default function BlogPostPage({ params }: { params: { id: string } }) {
-  const blog = getBlogById(params.id);
-
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const id = (await params).id;
+  const blog = getBlogById(id);
   if (!blog) {
     notFound();
   }
@@ -72,7 +68,7 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
 
         {/* Article Content */}
         <article className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:leading-relaxed prose-code:text-primary prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-muted prose-pre:border">
-          <MDXRemote source={blog.content} options={mdxOptions} />
+          <MDXRemote source={blog.content} options={mdxOptions as any} />
         </article>
 
         {/* Article Footer */}
@@ -94,4 +90,3 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
     </div>
   );
 }
-

@@ -80,3 +80,182 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+/* GitHub-style markdown component styles */
+@layer components {
+  .github-markdown {
+    @apply text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
+  }
+
+  .github-markdown h1,
+  .github-markdown h2,
+  .github-markdown h3,
+  .github-markdown h4,
+  .github-markdown h5,
+  .github-markdown h6 {
+    @apply font-semibold;
+    line-height: 1.25;
+    margin-top: 24px;
+    margin-bottom: 16px;
+  }
+
+  .github-markdown h1 {
+    @apply text-3xl border-b border-border pb-2;
+  }
+
+  .github-markdown h2 {
+    @apply text-2xl border-b border-border pb-2;
+  }
+
+  .github-markdown h3 {
+    @apply text-xl;
+  }
+
+  .github-markdown h4 {
+    @apply text-lg;
+  }
+
+  .github-markdown h5 {
+    @apply text-base;
+  }
+
+  .github-markdown h6 {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .github-markdown p {
+    margin-top: 0;
+    margin-bottom: 16px;
+    @apply leading-relaxed;
+  }
+
+  .github-markdown blockquote {
+    margin: 0;
+    padding: 0 1em;
+    @apply text-muted-foreground border-l-4 border-border;
+  }
+
+  .github-markdown ul,
+  .github-markdown ol {
+    margin-top: 0;
+    margin-bottom: 16px;
+    padding-left: 2em;
+  }
+
+  .github-markdown li + li {
+    margin-top: 0.25em;
+  }
+
+  .github-markdown code {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    @apply bg-muted rounded font-mono;
+  }
+
+  .github-markdown pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    @apply bg-muted border border-border rounded-md;
+  }
+
+  .github-markdown pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+  .github-markdown table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+    margin-top: 0;
+    margin-bottom: 16px;
+    @apply border border-border;
+  }
+
+  .github-markdown table th,
+  .github-markdown table td {
+    padding: 6px 13px;
+    @apply border border-border;
+  }
+
+  .github-markdown table th {
+    @apply font-semibold bg-muted;
+  }
+
+  .github-markdown table tr {
+    @apply bg-background border-t border-border;
+  }
+
+  .github-markdown table tr:nth-child(2n) {
+    @apply bg-muted/50;
+  }
+
+  .github-markdown img {
+    max-width: 100%;
+    height: auto;
+    box-sizing: content-box;
+    @apply rounded-md border border-border;
+  }
+
+  .github-markdown hr {
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    @apply bg-border border-0;
+  }
+
+  .github-markdown a {
+    @apply text-primary no-underline hover:underline;
+  }
+
+  .github-markdown strong {
+    @apply font-semibold;
+  }
+
+  .github-markdown em {
+    @apply italic;
+  }
+
+  .github-markdown del {
+    @apply line-through;
+  }
+
+  /* Task lists */
+  .github-markdown .task-list-item {
+    list-style-type: none;
+  }
+
+  .github-markdown .task-list-item-checkbox {
+    margin: 0 0.2em 0.25em -1.6em;
+    vertical-align: middle;
+  }
+
+  /* Code syntax highlighting support */
+  .github-markdown .hljs {
+    @apply bg-muted;
+  }
+}
+
+
+@import 'highlight.js/styles/github.css';
+@import 'highlight.js/styles/github-dark.css' (prefers-color-scheme: dark);

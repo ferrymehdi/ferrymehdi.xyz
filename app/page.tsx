@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -41,6 +42,9 @@ export default function HomePage() {
               </Button>
               <div className="flex gap-4">
                 <Button
+                  onClick={() =>
+                    window.open("https://github.com/ferrymehdi", "_blank")
+                  }
                   className="fade-in-delayed-2"
                   variant="outline"
                   size="icon"
@@ -48,6 +52,12 @@ export default function HomePage() {
                   <Github className="h-4 w-4" />
                 </Button>
                 <Button
+                  onClick={() =>
+                    window.open(
+                      "https://www.linkedin.com/in/ferrymehdi",
+                      "_blank",
+                    )
+                  }
                   className="fade-in-delayed-3"
                   variant="outline"
                   size="icon"
@@ -55,6 +65,9 @@ export default function HomePage() {
                   <Linkedin className="h-4 w-4" />
                 </Button>
                 <Button
+                  onClick={() =>
+                    window.open("mailto:me@ferrymehdi.xyz", "_blank")
+                  }
                   className="fade-in-delayed-4"
                   variant="outline"
                   size="icon"
@@ -125,4 +138,3 @@ export default function HomePage() {
     </div>
   );
 }
-

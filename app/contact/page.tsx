@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { Mail, MapPin, Send } from "lucide-react";
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -76,18 +76,6 @@ export default function ContactPage() {
               </Card>
 
               <Card className="fade-in-delayed-4">
-                <CardHeader>
-                  <CardTitle className="fade-in-delayed-4 flex items-center gap-3">
-                    <Phone className="h-5 w-5 text-primary" />
-                    Phone
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">+212 643359250</p>
-                </CardContent>
-              </Card>
-
-              <Card className="fade-in-delayed-5">
                 <CardHeader>
                   <CardTitle className="fade-in-delayed-5 flex items-center gap-3">
                     <MapPin className="h-5 w-5 text-primary" />

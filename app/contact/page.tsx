@@ -50,8 +50,10 @@ export default function ContactPage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6">Get In Touch</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <h1 className="fade-in-delayed-1 text-4xl sm:text-5xl font-bold mb-6">
+            Get In Touch
+          </h1>
+          <p className="fade-in-delayed-2 text-lg text-muted-foreground max-w-2xl mx-auto">
             Have a project in mind or want to collaborate? I'd love to hear from
             you. Let's discuss how we can work together.
           </p>
@@ -61,9 +63,9 @@ export default function ContactPage() {
           {/* Contact Information */}
           <div className="lg:col-span-1">
             <div className="space-y-6">
-              <Card>
+              <Card className="fade-in-delayed-3">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3">
+                  <CardTitle className="fade-in-delayed-3 flex items-center gap-3">
                     <Mail className="h-5 w-5 text-primary" />
                     Email
                   </CardTitle>
@@ -73,9 +75,9 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="fade-in-delayed-4">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3">
+                  <CardTitle className="fade-in-delayed-4 flex items-center gap-3">
                     <Phone className="h-5 w-5 text-primary" />
                     Phone
                   </CardTitle>
@@ -85,9 +87,9 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="fade-in-delayed-5">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3">
+                  <CardTitle className="fade-in-delayed-5 flex items-center gap-3">
                     <MapPin className="h-5 w-5 text-primary" />
                     Location
                   </CardTitle>
@@ -101,9 +103,11 @@ export default function ContactPage() {
 
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <Card>
+            <Card className="fade-in-delayed-6">
               <CardHeader>
-                <CardTitle>Send Me a Message</CardTitle>
+                <CardTitle className="fade-in-delayed-3">
+                  Send Me a Message
+                </CardTitle>
                 <CardDescription>
                   Fill out the form below and I'll get back to you as soon as
                   possible.
@@ -164,7 +168,7 @@ export default function ContactPage() {
 
                   <Button
                     type="submit"
-                    className="w-full"
+                    className="w-full fade-in-delayed-7"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -185,4 +189,3 @@ export default function ContactPage() {
     </div>
   );
 }
-

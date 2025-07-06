@@ -45,7 +45,11 @@ export default async function BlogPostPage({
     <div className="min-h-screen py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
-        <Button variant="ghost" asChild className="mb-8 -ml-4">
+        <Button
+          variant="ghost"
+          asChild
+          className="fade-in-delayed-2 mb-8 -ml-4"
+        >
           <Link href="/blogs">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Blogs
@@ -54,13 +58,13 @@ export default async function BlogPostPage({
 
         {/* Article Header */}
         <header className="mb-12">
-          <div className="flex items-center gap-2 mb-4">
+          <div className="fade-in-delayed-2 flex items-center gap-2 mb-4">
             <Badge variant="secondary">{blog.category}</Badge>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
+          <h1 className="fade-in-delayed-3 text-4xl sm:text-5xl font-bold mb-6 leading-tight">
             {blog.title}
           </h1>
-          <div className="flex items-center gap-6 text-muted-foreground mb-6">
+          <div className="fade-in-delayed-4 flex items-center gap-6 text-muted-foreground mb-6">
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4" />
               <span>{blog.date}</span>
@@ -70,20 +74,20 @@ export default async function BlogPostPage({
               <span>{blog.readTime}</span>
             </div>
           </div>
-          <p className="text-xl text-muted-foreground leading-relaxed">
+          <p className="fade-in-delayed-3 text-xl text-muted-foreground leading-relaxed">
             {blog.excerpt}
           </p>
-          <Separator className="mt-8" />
+          <Separator className="fade-in-delayed-3 mt-8" />
         </header>
 
         {/* Article Content */}
         <article
-          className="prose prose-lg max-w-none dark:prose-invert"
+          className="fade-in-delayed-4 prose prose-lg max-w-none dark:prose-invert"
           dangerouslySetInnerHTML={{ __html: htmlContent }}
         />
 
         {/* Article Footer */}
-        <footer className="mt-16 pt-8 border-t">
+        <footer className="fade-in-delayed-5 mt-16 pt-8 border-t">
           <div className="flex justify-between items-center">
             <Button variant="outline" asChild>
               <Link href="/blogs">

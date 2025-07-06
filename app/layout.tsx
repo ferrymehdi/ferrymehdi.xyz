@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navigation } from "@/components/navigation";
 import { Toaster } from "@/components/ui/sonner";
+import { Curtain } from "@/components/cortain";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,9 +22,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <Navigation />
-          <main className="min-h-screen">{children}</main>
-          <Toaster />
+          <Curtain>
+            <Navigation />
+            <main className="min-h-screen">{children}</main>
+            <Toaster />
+          </Curtain>
         </ThemeProvider>
       </body>
     </html>

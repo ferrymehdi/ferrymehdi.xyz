@@ -43,6 +43,11 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+
+    /* Custom code background colors */
+    --code-bg: 0 0% 89%; /* slate-100 */
+    --code-border: 0 0% 14.9%;
+    --inline-code-bg: 241 245 249;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -69,6 +74,11 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    /* Custom code background colors for dark mode */
+    --code-bg: #151b23; /* slate-800 */
+    --code-border: 0 0% 98%; /* slate-700 */
+    --inline-code-bg: 51 65 85; /* slate-600 */
   }
 }
 
@@ -165,20 +175,75 @@
     @apply text-muted-foreground italic mb-0;
   }
 
-  /* Code */
+  /* Improved Code Styling */
   .prose code {
-    @apply bg-muted text-foreground px-2 py-1 rounded-md text-sm font-mono;
+    @apply px-2 py-1 rounded-md text-sm font-mono font-medium;
+    background-color: hsl(var(--inline-code-bg));
+    color: hsl(var(--foreground));
     font-size: 0.875rem;
+    border: 1px solid hsl(var(--code-border) / 0.3);
   }
 
   .prose pre {
-    @apply bg-muted border border-border rounded-lg p-4 overflow-x-auto my-6;
+    @apply rounded-lg p-4 overflow-x-auto my-6 shadow-sm;
+    background-color: hsl(var(--code-bg)) !important;
+    border: 1px solid hsl(var(--code-border));
+    position: relative;
   }
 
   .prose pre code {
-    @apply bg-transparent p-0 text-sm;
+    @apply p-0 text-sm;
+    background-color: transparent !important;
+    border: none !important;
     font-size: 0.875rem;
     color: inherit;
+  }
+
+  /* Highlight.js overrides for better theme integration */
+  .prose .hljs {
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
+  /* Light mode syntax highlighting */
+  :root .prose .hljs-keyword { color: #d73a49; }
+  :root .prose .hljs-string { color: #032f62; }
+  :root .prose .hljs-number { color: #005cc5; }
+  :root .prose .hljs-comment { color: #6a737d; }
+  :root .prose .hljs-function { color: #6f42c1; }
+  :root .prose .hljs-variable { color: #e36209; }
+  :root .prose .hljs-type { color: #22863a; }
+  :root .prose .hljs-title { color: #6f42c1; }
+  :root .prose .hljs-attr { color: #005cc5; }
+  :root .prose .hljs-built_in { color: #005cc5; }
+  :root .prose .hljs-literal { color: #005cc5; }
+  :root .prose .hljs-params { color: #24292e; }
+
+  /* Dark mode syntax highlighting */
+  .dark .prose .hljs-keyword { color: #ff7b72; }
+  .dark .prose .hljs-string { color: #a5d6ff; }
+  .dark .prose .hljs-number { color: #79c0ff; }
+  .dark .prose .hljs-comment { color: #8b949e; }
+  .dark .prose .hljs-function { color: #d2a8ff; }
+  .dark .prose .hljs-variable { color: #ffa657; }
+  .dark .prose .hljs-type { color: #7ee787; }
+  .dark .prose .hljs-title { color: #d2a8ff; }
+  .dark .prose .hljs-attr { color: #79c0ff; }
+  .dark .prose .hljs-built_in { color: #79c0ff; }
+  .dark .prose .hljs-literal { color: #79c0ff; }
+  .dark .prose .hljs-params { color: #e6edf3; }
+
+  /* Code block language label */
+  .prose pre::before {
+    content: attr(data-language);
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    font-size: 0.75rem;
+    color: hsl(var(--muted-foreground));
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.05em;
   }
 
   /* Tables */
@@ -245,11 +310,14 @@
   }
 
   .dark .prose code {
-    @apply bg-muted text-foreground;
+    background-color: hsl(var(--inline-code-bg));
+    color: hsl(var(--foreground));
+    border-color: hsl(var(--code-border) / 0.3);
   }
 
   .dark .prose pre {
-    @apply bg-muted border-border;
+    background-color: hsl(var(--code-bg)) !important;
+    border-color: hsl(var(--code-border));
   }
 
   .dark .prose blockquote {

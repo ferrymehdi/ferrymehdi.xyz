@@ -336,3 +336,64 @@
     @apply text-foreground;
   }
 }
+
+
+@layer utilities {
+  /* Keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes curtainSlideUp {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+
+  /* Fade In Durations */
+  .fade-in-05 { animation: fadeIn 0.5s ease-in-out; }
+  .fade-in-1 { animation: fadeIn 1s ease-in-out; }
+  .fade-in-2 { animation: fadeIn 2s ease-in-out; }
+  .fade-in-3 { animation: fadeIn 3s ease-in-out; }
+  .fade-in-4 { animation: fadeIn 4s ease-in-out; }
+  .fade-in-5 { animation: fadeIn 5s ease-in-out; }
+  .fade-in-6 { animation: fadeIn 6s ease-in-out; }
+  .fade-in-7 { animation: fadeIn 7s ease-in-out; }
+  .fade-in-8 { animation: fadeIn 8s ease-in-out; }
+  .fade-in-9 { animation: fadeIn 9s ease-in-out; }
+  .fade-in-10 { animation: fadeIn 10s ease-in-out; }
+
+  /* Fade In with Short Delays (0.1s increments) */
+  .fade-in-delayed-1 { animation: fadeIn 0.5s ease-in-out 0.1s forwards; opacity: 0; }
+  .fade-in-delayed-2 { animation: fadeIn 0.5s ease-in-out 0.2s forwards; opacity: 0; }
+  .fade-in-delayed-3 { animation: fadeIn 0.5s ease-in-out 0.3s forwards; opacity: 0; }
+  .fade-in-delayed-4 { animation: fadeIn 0.5s ease-in-out 0.4s forwards; opacity: 0; }
+  .fade-in-delayed-5 { animation: fadeIn 0.5s ease-in-out 0.5s forwards; opacity: 0; }
+  .fade-in-delayed-6 { animation: fadeIn 0.5s ease-in-out 0.6s forwards; opacity: 0; }
+  .fade-in-delayed-7 { animation: fadeIn 0.5s ease-in-out 0.7s forwards; opacity: 0; }
+  .fade-in-delayed-8 { animation: fadeIn 0.5s ease-in-out 0.8s forwards; opacity: 0; }
+  .fade-in-delayed-9 { animation: fadeIn 0.5s ease-in-out 0.9s forwards; opacity: 0; }
+  .fade-in-delayed-10 { animation: fadeIn 0.5s ease-in-out 1s forwards; opacity: 0; }
+
+  /* Fade In with Long Delays (1s+ increments) */
+  .fade-in-delayed-1s { animation: fadeIn 0.5s ease-in-out 1s forwards; opacity: 0; }
+  .fade-in-delayed-2s { animation: fadeIn 0.5s ease-in-out 2s forwards; opacity: 0; }
+  .fade-in-delayed-3s { animation: fadeIn 0.5s ease-in-out 3s forwards; opacity: 0; }
+  .fade-in-delayed-4s { animation: fadeIn 0.5s ease-in-out 4s forwards; opacity: 0; }
+  .fade-in-delayed-5s { animation: fadeIn 0.5s ease-in-out 5s forwards; opacity: 0; }
+  .fade-in-delayed-6s { animation: fadeIn 0.5s ease-in-out 6s forwards; opacity: 0; }
+  .fade-in-delayed-7s { animation: fadeIn 0.5s ease-in-out 7s forwards; opacity: 0; }
+
+  /* Curtain Animation */
+  .curtain-enter { animation: curtainSlideUp 2.5s ease-in-out forwards; }
+}

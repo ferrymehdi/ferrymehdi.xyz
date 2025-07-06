@@ -5,16 +5,26 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { getBlogById } from "@/lib/blog-data";
-import remarkGfm from "remark-gfm";
-import rehypeHighlight from "rehype-highlight";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { marked } from "marked";
+import hljs from "highlight.js";
+
+// Import highlight.js CSS
 import "highlight.js/styles/github-dark.css";
-const mdxOptions = {
-  mdxOptions: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeHighlight],
-  },
+
+const renderer = new marked.Renderer();
+
+renderer.code = function ({ text, lang }: { text: string; lang?: string }) {
+  const validLanguage = lang && hljs.getLanguage(lang) ? lang : "plaintext";
+  const highlighted = hljs.highlight(text, { language: validLanguage }).value;
+  return `<pre><code class="hljs language-${validLanguage}">${highlighted}</code></pre>`;
 };
+
+// Configure marked
+marked.setOptions({
+  renderer: renderer,
+  breaks: true,
+  gfm: true,
+});
 
 export default async function BlogPostPage({
   params,
@@ -23,9 +33,13 @@ export default async function BlogPostPage({
 }) {
   const id = (await params).id;
   const blog = getBlogById(id);
+
   if (!blog) {
     notFound();
   }
+
+  // Convert markdown to HTML
+  const htmlContent = marked(blog.content);
 
   return (
     <div className="min-h-screen py-20">
@@ -43,11 +57,9 @@ export default async function BlogPostPage({
           <div className="flex items-center gap-2 mb-4">
             <Badge variant="secondary">{blog.category}</Badge>
           </div>
-
           <h1 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
             {blog.title}
           </h1>
-
           <div className="flex items-center gap-6 text-muted-foreground mb-6">
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4" />
@@ -58,18 +70,17 @@ export default async function BlogPostPage({
               <span>{blog.readTime}</span>
             </div>
           </div>
-
           <p className="text-xl text-muted-foreground leading-relaxed">
             {blog.excerpt}
           </p>
-
           <Separator className="mt-8" />
         </header>
 
         {/* Article Content */}
-        <article className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:leading-relaxed prose-code:text-primary prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-muted prose-pre:border">
-          <MDXRemote source={blog.content} options={mdxOptions as any} />
-        </article>
+        <article
+          className="prose prose-lg max-w-none dark:prose-invert"
+          dangerouslySetInnerHTML={{ __html: htmlContent }}
+        />
 
         {/* Article Footer */}
         <footer className="mt-16 pt-8 border-t">
@@ -80,7 +91,6 @@ export default async function BlogPostPage({
                 More Articles
               </Link>
             </Button>
-
             <div className="text-sm text-muted-foreground">
               Published on {blog.date}
             </div>

@@ -27,10 +27,21 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    if (!res.ok) {
+      const errorData = await res.json();
+      toast.error(
+        errorData.message || "An error occurred while sending your message.",
+      );
+      setIsSubmitting(false);
+      return;
+    }
     toast.success("Message sent successfully! I'll get back to you soon.");
     setFormData({ name: "", email: "", subject: "", message: "" });
     setIsSubmitting(false);

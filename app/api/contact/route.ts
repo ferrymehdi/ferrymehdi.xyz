@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextResponse) {
+export async function POST(request: NextRequest) {
   try {
     const { email, name, message, subject } = await request.json();
     const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;

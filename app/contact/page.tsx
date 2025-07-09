@@ -14,9 +14,12 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Mail, MapPin, Send } from "lucide-react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showCaptcha, setShowCaptcha] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,14 +30,34 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    if (showCaptcha && !recaptchaToken) {
+      toast.error("Please complete the reCAPTCHA verification.");
+      setIsSubmitting(false);
+      return;
+    }
+    const reqdata = JSON.stringify({
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+      recaptchaToken: recaptchaToken || null,
+    });
+
     const res = await fetch("/api/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: reqdata,
     });
+
+    const data = await res.json();
     if (!res.ok) {
+      if (data.code === 10029) {
+        setShowCaptcha(true);
+        setIsSubmitting(false);
+        return;
+      }
       const errorData = await res.json();
       toast.error(
         errorData.message || "An error occurred while sending your message.",
@@ -44,6 +67,8 @@ export default function ContactPage() {
     }
     toast.success("Message sent successfully! I'll get back to you soon.");
     setFormData({ name: "", email: "", subject: "", message: "" });
+    setRecaptchaToken(null);
+    setShowCaptcha(false);
     setIsSubmitting(false);
   };
 
@@ -54,6 +79,10 @@ export default function ContactPage() {
       ...prev,
       [e.target.name]: e.target.value,
     }));
+  };
+
+  const handleRecaptchaChange = (token: string | null) => {
+    setRecaptchaToken(token);
   };
 
   return (
@@ -164,6 +193,14 @@ export default function ContactPage() {
                       required
                     />
                   </div>
+                  {showCaptcha && (
+                    <div className="flex justify-center">
+                      <ReCAPTCHA
+                        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                        onChange={handleRecaptchaChange}
+                      />
+                    </div>
+                  )}
 
                   <Button
                     type="submit"

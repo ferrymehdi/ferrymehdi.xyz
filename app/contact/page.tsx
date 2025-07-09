@@ -94,8 +94,8 @@ export default function ContactPage() {
             Get In Touch
           </h1>
           <p className="fade-in-delayed-2 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? I'd love to hear from
-            you. Let's discuss how we can work together.
+            Have a project in mind or want to collaborate? I&apos;d love to hear from
+            you. Let&apos;s discuss how we can work together.
           </p>
         </div>
 
@@ -137,7 +137,7 @@ export default function ContactPage() {
                   Send Me a Message
                 </CardTitle>
                 <CardDescription>
-                  Fill out the form below and I'll get back to you as soon as
+                  Fill out the form below and I&apos;ll get back to you as soon as
                   possible.
                 </CardDescription>
               </CardHeader>

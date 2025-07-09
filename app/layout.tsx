@@ -1,12 +1,12 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navigation } from "@/components/navigation";
 import { Toaster } from "@/components/ui/sonner";
 import { Curtain } from "@/components/cortain";
 
-const inter = Inter({ subsets: ["latin"] });
+// Use system fonts as fallback to avoid Google Fonts fetch issues
+const fontClassName = "font-sans";
 
 export const metadata: Metadata = {
   title: "EL MEHDI ELFERRY - Portfolio",
@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className} suppressHydrationWarning>
+      <body className={fontClassName} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Curtain>
             <Navigation />

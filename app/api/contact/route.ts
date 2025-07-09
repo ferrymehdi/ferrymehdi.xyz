@@ -70,10 +70,6 @@ export async function POST(request: NextRequest) {
           { status: 400 },
         );
       }
-      ipSubmissions.set(clientIP, {
-        count: 0,
-        lastSubmission: now,
-      });
     }
     ipSubmissions.set(clientIP, {
       count: ipData.count + 1,
@@ -141,7 +137,7 @@ export async function POST(request: NextRequest) {
         },
         {
           name: "Count",
-          value: ipData.count.toString(),
+          value: (ipData.count + 1).toString(),
           inline: true,
         },
       ],

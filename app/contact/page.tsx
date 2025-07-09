@@ -194,7 +194,7 @@ export default function ContactPage() {
                     />
                   </div>
                   {showCaptcha && (
-                    <div className="flex justify-center">
+                    <div className="flex">
                       <ReCAPTCHA
                         sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
                         onChange={handleRecaptchaChange}

@@ -43,7 +43,12 @@ export async function POST(request: NextRequest) {
       lastSubmission: 0,
     };
     const now = Date.now();
-    if (ipData.count >= 1 && now - ipData.lastSubmission < 60 * 60 * 2000) {
+    // Check if the IP is a proxy
+    const isProxy = await checkIpIsProxy(clientIP);
+    if (
+      (ipData.count >= 2 && now - ipData.lastSubmission < 60 * 60 * 2000) ||
+      isProxy
+    ) {
       if (!recaptchaToken) {
         return NextResponse.json(
           {
@@ -184,6 +189,30 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
     return data.success;
   } catch (error) {
     console.error("Error verifying reCAPTCHA:", error);
+    return false;
+  }
+}
+
+async function checkIpIsProxy(ip: string): Promise<boolean> {
+  const PROXYCHECK_API_KEY = process.env.PROXYCHECK_API_KEY;
+  if (!PROXYCHECK_API_KEY) {
+    console.error("PROXYCHECK_API_KEY not configured");
+    return false;
+  }
+  try {
+    const response = await fetch(
+      `https://proxycheck.io/v2/${ip}?key=${PROXYCHECK_API_KEY}&vpn=1&risk=1&port=1&seen=1&days=7&tag=myproject&json=1`,
+    );
+    const data = await response.json();
+    if (data.status === "ok") {
+      if (data[ip] && data[ip].proxy === "yes") {
+        console.log(`IP ${ip} is a proxy`);
+        return true;
+      }
+    }
+    return false;
+  } catch (error) {
+    console.error("Error checking IP proxy status:", error);
     return false;
   }
 }

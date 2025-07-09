@@ -129,6 +129,20 @@ export async function POST(request: NextRequest) {
           value: subject,
           inline: true,
         },
+        {
+          name: "IP Address",
+          value: clientIP,
+          inline: true,
+        },
+        {
+          name: "Proxy Check",
+          value: isProxy ? "Yes" : "No",
+          inline: true,
+        },
+        {
+          name: "Count of Submissions",
+          value: ipData.count.toString(),
+        },
       ],
       description: message,
     };

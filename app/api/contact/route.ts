@@ -140,8 +140,9 @@ export async function POST(request: NextRequest) {
           inline: true,
         },
         {
-          name: "Count of Submissions",
+          name: "Count",
           value: ipData.count.toString(),
+          inline: true,
         },
       ],
       description: message,
